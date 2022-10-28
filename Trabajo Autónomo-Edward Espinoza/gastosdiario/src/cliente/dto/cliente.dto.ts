@@ -1,6 +1,6 @@
 export class createClienteDTO{
-    readonly id: string;
-    readonly name: string;
-    readonly lastname: string;
-    readonly identification: string;
+     id: null;
+     name: string;
+     lastname: string;
+     identification : string;
 }

@@ -6,10 +6,10 @@ import { createClienteDTO } from './dto/cliente.dto'
 export class ClienteController {
 
     @Post('/create')
-    createPost(@Res()res, @Body()createclienteDTO: createClienteDTO) {
-        console.log(createClienteDTO);
-        res.status(HttpStatus.OK).json({
-            message:  'received'
+    createPost(@Res() res, @Body() createClienteDTO: createClienteDTO) {
+        //console.log(createClienteDTO);
+        return res.status(HttpStatus.OK).json({
+            message: "received"
         });
     }
 }
