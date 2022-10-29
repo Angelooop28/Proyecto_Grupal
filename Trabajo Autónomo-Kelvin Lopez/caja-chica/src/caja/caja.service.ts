@@ -1,26 +1,72 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { isValidObjectId, Model } from 'mongoose';
 import { CreateCajaDto } from './dto/create-caja.dto';
 import { UpdateCajaDto } from './dto/update-caja.dto';
+import { Caja } from './entities/caja.entity';
 
 @Injectable()
 export class CajaService {
-  create(createCajaDto: CreateCajaDto) {
-    return 'This action adds a new caja';
+
+  constructor(
+    @InjectModel(Caja.name) private ModeloCaja: Model<Caja>
+  ){
+    
+  }
+  async create(createCajaDto: CreateCajaDto) {
+    try {
+      const CreateCaja = await this.ModeloCaja.create( createCajaDto )
+      return CreateCaja;
+    } catch (error) {
+      throw new InternalServerErrorException('Error al intentar crear el modelo- Error Interno - Logs')
+    }
   }
 
-  findAll() {
-    return `This action returns all caja`;
+  async findAll() {
+
+      const busquedaCaja = await this.ModeloCaja.find(); 
+      if(busquedaCaja === null){
+        throw new BadRequestException('No hay datos en DB')
+      } 
+      return busquedaCaja;
+
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} caja`;
+  async findOne(id: string) {
+    let BuscarOnoCaja: Caja
+  
+      if(!BuscarOnoCaja && isValidObjectId(id))
+        BuscarOnoCaja = await this.ModeloCaja.findById(id);
+      
+
+      if(!BuscarOnoCaja) throw new NotFoundException('Modelo no Encontrado en DB');
+        
+
+      return BuscarOnoCaja;
+
   }
 
-  update(id: number, updateCajaDto: UpdateCajaDto) {
-    return `This action updates a #${id} caja`;
+  async update(id: string, updateCajaDto: UpdateCajaDto) {
+    try {
+      const UpdateCaja = await this.ModeloCaja.findById(id);
+      await UpdateCaja.updateOne( updateCajaDto )
+      return updateCajaDto;
+    } catch (error) {
+      throw new NotFoundException('Modelo a actualizar no encontrado');
+    }
+
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} caja`;
+  async remove(id: string) {
+    try {
+
+      const DeleteCaja = await this.ModeloCaja.findById(id);
+      await DeleteCaja.deleteOne()
+      return DeleteCaja;
+    } catch (error) {
+      throw new NotFoundException('Modelo a eliminar no encontrado');
+    }
+
+
   }
 }

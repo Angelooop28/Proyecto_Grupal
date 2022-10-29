@@ -10,17 +10,15 @@ export class CreateTransaccionDto {
 
 
     @IsNotEmpty()
-    @IsPositive()
-    @IsNumber()
-    @Min(2)
-    Ingreso: number
+    @MinLength(2)
+    @IsString()
+    Ingreso: string
 
 
     @IsNotEmpty()
-    @IsPositive()
-    @IsNumber()
-    @Min(2)
-    Egreso: number
+    @MinLength(2)
+    @IsString()
+    Egreso: string
 
     @IsNotEmpty()
     @IsString()

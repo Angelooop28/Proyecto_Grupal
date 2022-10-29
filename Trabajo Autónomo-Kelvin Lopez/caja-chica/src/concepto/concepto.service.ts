@@ -1,26 +1,65 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { isValidObjectId, Model } from 'mongoose';
 import { CreateConceptoDto } from './dto/create-concepto.dto';
 import { UpdateConceptoDto } from './dto/update-concepto.dto';
+import { Concepto } from './entities/concepto.entity';
 
 @Injectable()
 export class ConceptoService {
-  create(createConceptoDto: CreateConceptoDto) {
-    return 'This action adds a new concepto';
+  constructor(
+    @InjectModel(Concepto.name)  private ModeloConcepto: Model<Concepto>
+  ){
+
+  }
+  async create(createConceptoDto: CreateConceptoDto) {
+    try {
+      const CreateConcepto = await this.ModeloConcepto.create( createConceptoDto )
+      return CreateConcepto;
+    } catch (error) {
+      throw new InternalServerErrorException('Error al intentar crear el modelo- Error Interno - Logs')
+    }
   }
 
-  findAll() {
-    return `This action returns all concepto`;
+  async findAll() {
+    const ShwoConcepto = await this.ModeloConcepto.find(); 
+    if(ShwoConcepto === null){
+      throw new BadRequestException('No hay datos en DB')
+    } 
+    return ShwoConcepto;
+
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} concepto`;
+  async findOne(id: string) {
+    let ShowConceptoOne: Concepto
+  
+    if(!ShowConceptoOne && isValidObjectId(id))
+      ShowConceptoOne = await this.ModeloConcepto.findById(id);
+    
+
+    if(!ShowConceptoOne) throw new NotFoundException('Modelo no Encontrado en DB');
+      
+  
+    return ShowConceptoOne;
   }
 
-  update(id: number, updateConceptoDto: UpdateConceptoDto) {
-    return `This action updates a #${id} concepto`;
+  async update(id: string, updateConceptoDto: UpdateConceptoDto) {
+    try {
+      const UpdateConcepto = await this.ModeloConcepto.findById(id);
+      await UpdateConcepto.updateOne( updateConceptoDto )
+      return updateConceptoDto;
+    } catch (error) {
+      throw new NotFoundException('Modelo a actualizar no encontrado');
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} concepto`;
+  async remove(id: string) {
+    try {
+      const DeleteConcepto = await this.ModeloConcepto.findById(id);
+      await DeleteConcepto.deleteOne()
+      return DeleteConcepto;
+    } catch (error) {
+      throw new NotFoundException('Modelo a eliminar no encontrado');
+    }
   }
 }

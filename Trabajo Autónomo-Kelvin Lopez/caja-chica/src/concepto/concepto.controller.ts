@@ -19,16 +19,16 @@ export class ConceptoController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.conceptoService.findOne(+id);
+    return this.conceptoService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateConceptoDto: UpdateConceptoDto) {
-    return this.conceptoService.update(+id, updateConceptoDto);
+    return this.conceptoService.update(id, updateConceptoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.conceptoService.remove(+id);
+    return this.conceptoService.remove(id);
   }
 }

@@ -12,11 +12,11 @@ export class Transaccion {
 
 
     @Prop()
-    Ingreso: number
+    Ingreso: string
 
 
     @Prop()
-    Egreso: number
+    Egreso: string
 
 
     @Prop()

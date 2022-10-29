@@ -19,16 +19,16 @@ export class CajaController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.cajaService.findOne(+id);
+    return this.cajaService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCajaDto: UpdateCajaDto) {
-    return this.cajaService.update(+id, updateCajaDto);
+    return this.cajaService.update(id, updateCajaDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.cajaService.remove(+id);
+    return this.cajaService.remove(id);
   }
 }
