@@ -1,1 +1,0 @@
-{"version":3,"file":"palabra.schema.js","sourceRoot":"","sources":["../../../src/palabra/schemas/palabra.schema.ts"],"names":[],"mappings":";;;AAAA,uCAAkC;AACpB,QAAA,cAAc,GAAG,IAAI,iBAAM,CAAC;IACtC,SAAS,EAAE,EAAC,IAAI,EAAE,MAAM,EAAE,QAAQ,EAAC,IAAI,EAAC;IACxC,OAAO,EAAE,MAAM;IACf,QAAQ,EAAE,MAAM;CAEnB,CAAC,CAAC"}

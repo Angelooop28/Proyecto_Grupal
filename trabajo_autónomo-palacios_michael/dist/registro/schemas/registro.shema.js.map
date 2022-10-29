@@ -1,1 +1,0 @@
-{"version":3,"file":"registro.shema.js","sourceRoot":"","sources":["../../../src/registro/schemas/registro.shema.ts"],"names":[],"mappings":";;;AAAA,uCAAkC;AAEpB,QAAA,cAAc,GAAG,IAAI,iBAAM,CAAC;IAEtC,EAAE,EAAC,EAAC,IAAI,EAAC,MAAM,EAAE,QAAQ,EAAC,IAAI,EAAC;IAC/B,QAAQ,EAAC,MAAM;IACf,SAAS,EAAC,MAAM;IAChB,QAAQ,EAAE,MAAM;IAChB,OAAO,EAAC,MAAM;IACd,QAAQ,EAAC,MAAM;CAClB,CAAC,CAAC"}
