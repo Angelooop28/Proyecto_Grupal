@@ -1,0 +1,12 @@
+/* eslint-disable prettier/prettier */
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { MongooseModule } from '@nestjs/mongoose'
+
+@Module({
+  imports: [  MongooseModule.forRoot('mongodb+srv://luislopez1201:12345@cluster0.byziivv.mongodb.net/DataBase')],
+  controllers: [AppController],
+  providers: [AppService]
+})
+export class AppModule {}
