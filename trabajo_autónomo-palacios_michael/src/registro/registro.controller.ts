@@ -1,5 +1,7 @@
 import { Controller,Get,Post,Put,Delete, Res,HttpStatus,Body, Param, NotFoundException,Query } from '@nestjs/common';
 import { CreatepalabraDTO } from "./dto/registro.dto";
+import { query } from 'express';
+
 import { RegistroService } from "./registro.service";
 
 @Controller('registro')

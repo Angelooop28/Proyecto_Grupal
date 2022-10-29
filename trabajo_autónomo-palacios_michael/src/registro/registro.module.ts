@@ -6,8 +6,8 @@ import { RegistroSchema } from "./schemas/registro.shema";
 
 @Module({
   imports:[
-    MongooseModule.forFeature([{
-      name:'Registro',schema:RegistroSchema}
+    MongooseModule.forFeature([
+      {name:'Registro',schema:RegistroSchema}
     ])
   ],
   controllers: [RegistroController],
