@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { ApiProperty } from "@nestjs/swagger";
 import { ObjectId } from "mongoose";
 
 
@@ -9,6 +10,7 @@ export class Caja {
     id: ObjectId
 
     @Prop()
+    @ApiProperty({required: true, type: String})
     Descripcion: string
 
 }
