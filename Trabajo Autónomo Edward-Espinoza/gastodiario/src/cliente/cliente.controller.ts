@@ -1,15 +1,13 @@
 import { Controller, Get, Post, Put, Delete, Res, HttpStatus, Body, Param, NotFoundException, Query } from '@nestjs/common';
-
 import { createClienteDTO } from './dto/cliente.dto'
-
 import {ClienteService} from './cliente.service'
-import { response } from 'express';
+import { response } from 'express'
 
 @Controller('cliente')
 export class ClienteController {
-
+    
     constructor(private clientetService: ClienteService) {}
-
+    
     @Post('/create')
     async createPost(@Res() res, @Body() createClienteDTO: createClienteDTO) {
         const cliente = await this.clientetService.createcliente(createClienteDTO);

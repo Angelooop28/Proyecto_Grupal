@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import {Model} from 'mongoose'
-import {InjectModel} from '@nestjs/mongoose'
-
-import {cliente } from './interfaces/cliente.interface'
-import {createClienteDTO} from './dto/cliente.dto'
+import { Model } from 'mongoose'
+import { InjectModel } from '@nestjs/mongoose'
+import { cliente } from './interfaces/cliente.interface'
+import { createClienteDTO } from './dto/cliente.dto'
 import { ClienteModule } from './cliente.module'
+
 
 @Injectable()
 export class ClienteService {

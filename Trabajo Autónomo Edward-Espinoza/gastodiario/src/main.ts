@@ -1,8 +1,19 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(4000);
+
+  const options= new DocumentBuilder()
+  .setTitle(' GASTOS_DIARIOS')
+  .setDescription('CLIENTES, CONCEPTOS, GASTOS DEL CLIENTE')
+  .setVersion('1.0')
+  .addTag('GASTOS_DIARIOS')
+  .build();
+
+  const document = SwaggerModule.createDocument(app,options);
+  SwaggerModule.setup('api/docs',app, document)
+  await app.listen(5000);
 }
 bootstrap();

@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Res, HttpStatus, Body, Param, NotFoundException, Query } from '@nestjs/common';
 import { ConceptoService } from './concepto.service'
-import { response } from 'express'
-import { createConceptoDTO } from './dto/concepto.dto';
+import { createConceptoDTO } from './dto/concepto.dto'
+import { response } from 'express';
 
 @Controller('concepto')
 export class ConceptoController {
